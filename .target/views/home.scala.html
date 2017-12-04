@@ -1,0 +1,438 @@
+@(headerPageList:List[model.HeaderPage],testimonals:List[model.Testimonals],solutions:List[model.Solution])
+@import java.lang.Integer; var count=0;
+@import java.lang.Integer; var index=0;
+@import java.lang.Integer; var testimonialIndex=0;
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <style type="text/css">
+a.link.active { color:black; }
+  </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Kimono</title>
+
+    <!-- Bootstrap -->
+    <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet">
+    
+    <!-- Style -->
+    
+            <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/animate.css")">
+			<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/style.css")">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+     
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="home">
+    
+    <!-- Header -->
+    <header>
+    	<nav class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><img src="https://s3.amazonaws.com/kimono-dash/Logos+for+S3/Horizontal+Logos/Kimono_horizontal_logo_pencil_white.svg" alt="" title="" style="height: 65px !important;" ></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="/solutions">Solutions</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/marketplace">Marketplace</a></li>
+                <li><a href="/contactUs">Contact Us</a></li>
+                <!-- <li><a href="#" id="slugID">content</a></li> -->
+                
+                <!-- <li><a href="/dynamic_page">dynamic-page</a></li> -->
+                <!-- <li class="signin" style="margin-left: 190px;"><a href="https://www.kimonocloud.com/login" target="_blank">Sign In</a></li> -->
+              </ul>
+               <ul class="nav navbar-nav navbar-right">
+              	<li class="signin"><a href="https://www.kimonocloud.com/login" target="_blank">Sign In</a></li>
+              </ul> 
+            </div>
+          </div>
+        </nav>
+    </header>
+	
+    <!-- Banner -->
+    <section class="banner">
+    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
+        	<!-- Indicators -->
+          	<ol class="carousel-indicators">
+          	
+          	   @for(headerPage <- headerPageList){
+            	<li data-target="#carousel-example-generic" data-slide-to=@index class="" id="kimo@index"></li>
+            	
+            	   	@(index = index +1)
+            	}
+            	
+            	
+          	</ol>
+         	<div class="carousel-inner" role="listbox" style="">
+         	@if(headerPageList==null){
+         	<div class="item">
+             		<img src="@routes.Assets.at("images/banner.png")" alt="" title="">
+              		<div class="carousel-caption wow fadeInDown">
+                		<div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-1">
+                                <h1>Interoperability,<br> Expertly Simplified.</h1>
+                                <p>Lorem ipsum dolor sit amet, consec tetur
+                                adipiscing elit, sed do eiusmod.</p>
+                                <a href="#">Watch Demo</a>
+                            </div>
+                        </div>
+                	</div>
+              	</div>
+            	</div>
+         	}else{
+         	@for(headerPage <- headerPageList){
+            	<div class="item " style="object-fit:cover;">
+             		<!-- <img src="@routes.Assets.at("images/slid.jpg")" alt="" title=""> -->
+             		
+          		<img src=@headerPage.getHeaderUrl() alt="" title="" width="100%">
+          	
+              		<div class="carousel-caption wow fadeInDown">
+                		<div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-1">
+                            	 @if(headerPage.getHeaderText()!=null){
+                                <h1>@headerPage.getHeaderText()</h1>
+                                }
+                                @if(headerPage.getHeaderDescription()!=null){
+                                <p>@headerPage.getHeaderDescription()</p>
+                                }
+                                @if(headerPage.getButtonClick()==null){
+                                }else{
+                                <a href=@headerPage.getButtonClick()>Watch Demo</a>
+                                }
+                            </div>
+                        </div>
+                	</div>
+              	</div>
+            	</div>
+            	}
+            }
+             
+                 
+          	</div>
+        
+          	<!-- Controls -->
+          	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          		<img src="@routes.Assets.at("images/left-arrow.png")" alt="" title="" >
+          	</a> 
+          		
+          	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          		<img src="@routes.Assets.at("images/right-arrow.png")" alt="" title="" >
+          	</a>
+        </div>
+    </section>
+    
+    <!-- Content -->
+    <section class="content">
+    	<div class="top-menu-bar">
+        	<div class="container">
+            	<div class="row">
+                	<ul>
+                    	<li><a href="/k12/K-12">K-12</a></li>
+                        <li><a href="/higher_education/Higher Education">Higher Education</a></li>
+                        <li><a href="/partners/Partners">Partners</a></li>
+                        <li><a href="/developers/Developers">Developers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="down-arrow">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	 <a href="#"><img src="@routes.Assets.at("images/down-arrow.png")" alt="" title="" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comprehensive-solution" style="padding-bottom:0 !important">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h2>A Comprehensive Solution</h2>
+                    </div>
+                </div>
+                @if(solutions==null){
+            	<div class="row">
+                    <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    	<div class="left-box wow fadeInLeft">
+                        	<img src="@routes.Assets.at("images/icon-1.png")" alt="" title="" >
+                        	<h3>Complex Integration Made Simple</h3>
+                            <p>Kimono®'s adaptable, cloud-based platform is the most comprehensive education interoperability solution available.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-6">
+                    	<div class="right-box wow fadeInRight">
+                        	<img src="@routes.Assets.at("images/icon-2.png")" alt="" title="" >
+                        	<h3>Support for Open Standards</h3>
+                            <p>The Kimono platform is standards-agnostic — supporting LDAP, OAuth, SIF, Ed-Fi, LIS, OneRoster, LTI, CSV and more.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    	<div class="left-box wow fadeInLeft">
+                        	<img src="@routes.Assets.at("images/icon-3.png")" alt="" title="" >
+                        	<h3>Integrate Rosters with<br>Active Directory & Google</h3>
+                            <p>Kimono connects Active Directory, Google Apps for Education, and LDAP with your district's existing SIS, 
+                            providing real-time synchronization of student and staff accounts.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-6">
+                    	<div class="right-box wow fadeInRight cloud-base">
+                        	<img src="@routes.Assets.at("images/icon-4.png")" alt="" title="" >
+                        	<h3>Cloud-Based Integration as a Service</h3>
+                            <p>The Kimono platform provides an intuitive, cloud-based experience for education data integration — enabling secure bi-directional 
+                            exchange of student and staff data in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    	<div class="left-box wow fadeInLeft">
+                        	<img src="@routes.Assets.at("images/icon-5.png")" alt="" title="" >
+                        	<h3>The Premium Interoperability Solution for Canvas</h3>
+                            <p>Kimono enables the Canvas LMS to exchange real-time data with your district's SIS. 
+                            Teachers can pass grades back to the SIS, as well as to any grade book that is connected to the Kimono platform.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-6">
+                    	<div class="right-box wow fadeInRight real-time">
+                        	<img src="@routes.Assets.at("images/icon-6.png")" alt="" title="" >
+                        	<h3>Continuous Real-Time Integration</h3>
+                            <p>Kimono works by continuously acquiring data from your applications, then exchanging it over a Publish & Subscribe architecture, 
+                            helping to improve the accuracy, accessibility, and privacy of student information.</p>
+                        </div>
+                    </div>
+                </div>
+                }else{
+                	@for(solution <- solutions){
+                		@if(count==0){
+            			<div class="row">
+            			<div class="col-md-4 col-md-offset-1 col-xs-12 col-sm-6">
+		                    	<div class="left-box wow fadeInLeft">
+		                        	<img src=@solution.getIconUrl() alt="" title="" >
+		                        	@if(solution.getTitle()!=null){
+		                        	<h3>@solution.getTitle()</h3>
+		                        	}
+		                        	@if(solution.getContent()!=null){
+		                            <p>@solution.getContent()</p>
+		                            }
+		                        </div>
+		                    </div>
+            			}else{
+            				
+		                    <div class="col-md-4 col-md-offset-2 col-xs-12 col-sm-6" style="">
+		                    	<div class="right-box wow fadeInRight mt28" style="">
+		                        	<img src=@solution.getIconUrl() alt=""  class="text-left" title="" >
+		                        	@if(solution.getTitle()!=null){
+		                        	<h3 class="">@solution.getTitle()</h3>
+		                        	}
+		                        	@if(solution.getContent()!=null){
+		                            <p class="">@solution.getContent()</p>
+		                            }
+		                        </div>
+		                    </div>
+		                    </div>
+		                  }
+		                  @(count = count +1)
+		                  @if(count == 2){
+		                  	@(count=0)
+		                  }
+            		}
+            		@if(count==1){
+            			</div>
+            		}
+                }
+            </div>
+        
+        <div class="testimonial-sec">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h3>Testimonals</h3>
+                    </div>
+                </div>
+                <div class="row">
+                	@if(testimonals==null){
+                	<div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInLeft">
+                        	<img src="@routes.Assets.at("images/testimonial-thumbnail.png")" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInDown">
+                        	<img src="@routes.Assets.at("images/testimonial-thumbnail.png")" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInRight">
+                        	<img src="@routes.Assets.at("images/testimonial-thumbnail.png")" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    }else{
+                    	@for(testimonal <- testimonals){
+                    	
+            				 <div class="col-sm-4">
+            				 @if(testimonialIndex==0){
+                    	<div class="testimonial-detail wow fadeInLeft" id="@testimonialIndex">
+                    	}
+                    	 @if(testimonialIndex==1){
+                    	<div class="testimonial-detail wow fadeInDown" id="@testimonialIndex">
+                    	}
+                    	 @if(testimonialIndex==2){
+                    	<div class="testimonial-detail wow fadeInRight" id="@testimonialIndex">
+                    	}
+                    		@if(testimonal.getImageUrl() == null){
+                        		<img src="@routes.Assets.at("images/testimonial-thumbnail.png")" alt="" title="" >
+                        	}else{
+                        		<img style="width: 27%;" src=@testimonal.getImageUrl() >
+                        	}
+                            <h4>@testimonal.getTitle()</h4>
+                            <h5>@testimonal.getCompany()</h5>
+                            <p>@testimonal.getContent()</p>
+                        </div>
+                    </div>
+                    
+                    @(testimonialIndex = testimonialIndex +1)
+		                  @if(testimonialIndex == 3){
+		                  	@(testimonialIndex=0)
+		                  }
+                    }
+                   
+                    
+            			}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="schedule-demo wow fadeInDown">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-md-6 col-md-offset-3 col-sm-12">
+                    	<h3>Schedule a Demo</h3>
+                        <form>
+                        	<input type="text" value="" placeholder="First Name" class="half-width" >
+                            <input type="text" value="" placeholder="Last Name" class="half-width">
+                            <input type="email" value="" placeholder="Email" >
+                            <input type="text" value="" placeholder="Organization" >
+                            <button>Schedule My Demo</button>
+                           <p> <a href="#">Or Watch One Now!</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+    <!-- Footer  -->
+    <footer class="wow fadeInDown">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-4 col-lg-3 col-sm-5">
+                	<h5 class="mobilenavsheading">Navigation</h5>
+                    <ul class="navigation">
+                    	<li><a href="/" class="activee">Home</a></li>
+                        <li><a href="/solutions">Solutions</a></li>
+                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="#">Watch Demo</a></li>
+                        <li><a href="https://www.kimonocloud.com/login" target="_blank">Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-lg-2 col-lg-offset-2 col-sm-3 mobilenavs">
+                	<h5>Support</h5>
+                    <ul>
+                    	<li><a href="http://support.kimonocloud.com" target="_blank">Support Center</a></li>
+                        <li><a href="#">Platform Status </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-2 col-sm-4 mobilenavs">
+                	<h5>Contact Us</h5>
+                    <div class="contact-us">
+                    <p>35 West Broadway, Suite 103 Salt Lake City, UT 84101</p>
+                    <a href="#">1-877-262-9143</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+        	<div class="container navsfooter">
+            	<p>&copy;2017 Kimono LLC. All Rights Reserved.   |  Kimono &reg; is a registered trademark of Kimono LLC.</p>
+            </div>
+        </div>
+    </footer>
+
+	
+	
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+	<script src="@routes.Assets.at("js/wow.min.js")"></script>
+    <script src="@routes.Assets.at("js/custom.js")"></script>
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+    	/* $(function() {
+    		  $('.navigation a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
+    		}); */
+    	$.ajax({
+     	    type: "GET",
+     	    url: "@routes.Application.getSlugValue",
+     	    dataType: "json",
+     	    contentType: "application/json; charset=utf-8",
+     	     success: function(slugValue){
+     	    	$("#slugID ").attr("href" ,"/page/"+slugValue+"");
+     	    	
+     	    }
+     	});
+    	});
+    
+    </script>
+    
+    <script>
+  $(function(){
+	  $(".item").first().addClass("active");
+  })
+  
+  $(function () {
+	  $("#kimo0").addClass("active");
+     });
+  
+  /* $(function() {
+	   $('a.link').click(function() {
+	       $('a.link').removeClass('active');
+	       $(this).addClass('active');
+	   });
+	}); */
+    </script>
+  </body>
+</html>

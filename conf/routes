@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET      /                           	controllers.Application.index()
+#GET     /home							controllers.Application.home()
+#GET      /solutions/:subTitle			controllers.Application.audience(subTitle:String)
+GET      /solutions			            controllers.Application.getAudience()
+GET      /marketplace					controllers.Application.marketplace()
+GET      /resources				        controllers.Application.newsevents()
+GET      /products				        controllers.Application.getProducts()
+GET      /contactUs				        controllers.Application.getPageContent()  
+GET      /dynamic_page                  controllers.Application.getDynamicPage()
+GET      /k12                           controllers.Application.getK12()
+GET      /k12/:subTitle                 controllers.Application.getK12Link(subTitle:String)
+GET      /higher_education              controllers.Application.getHigher_education()
+GET      /higher_education/:subTitle    controllers.Application.getHigher_educationLink(subTitle:String)
+GET      /partners                      controllers.Application.getPartners()
+GET      /partners/:subTitle            controllers.Application.getPartnersLink(subTitle:String)
+GET      /developers                    controllers.Application.getDevelopers()
+GET      /developers/:subTitle          controllers.Application.getDevelopersLink(subTitle:String)
+POST     /callsearchProductPage			controllers.Application.callsearchProductPage()
+GET      /page/:slug                    controllers.Application.getContent(slug:String)
+GET      /slugValueInfo                 controllers.Application.getSlugValue()
+#GET      /resourceList                  controllers.Application.getResourceList()
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               	controllers.Assets.at(path="/public", file)

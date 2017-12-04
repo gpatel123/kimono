@@ -1,0 +1,457 @@
+@(solutionList:List[model.News],announcementList:List[model.News],testimonals:List[model.Testimonals],subTitle:String)
+@import java.lang.Integer; var solutionIndex=0;
+@import java.lang.Integer; var index=0;
+@import java.lang.Integer; var testimonialIndex=0;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Kimono</title>
+
+    <!-- Bootstrap -->
+    <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet">
+    
+    <!-- Style -->
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/animate.css")">
+			<link rel="stylesheet" media="screen" href="@routes.Assets.at("css/style.css")">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+    <!-- Header -->
+    <header>
+    	<nav class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><img src="https://s3.amazonaws.com/kimono-dash/Logos+for+S3/Horizontal+Logos/Kimono_horizontal_logo_pencil_white.svg" alt="" title="" style="height: 65px !important;" ></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="/solutions">Solutions</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/marketplace">Marketplace</a></li>
+                <li><a href="/contactUs">Contact Us</a></li>
+                
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+              	<li class="signin"><a href="https://www.kimonocloud.com/login" target="_blank">Sign In</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+	
+    <!-- Banner -->
+    <section class="banner">
+    	 <div class="inner-banner">
+         	<img src="@routes.Assets.at("images/inner-banner.png")" alt="" title="" >
+         </div>
+    </section>
+    
+    <!-- Content -->
+    <section class="content">
+    	<div class="top-menu-bar">
+        	<div class="container">
+            	<div class="row">
+                	<ul>
+                    	<li><a href="/k12/K-12" id="k-12">K-12</a></li>
+                        <li><a href="/higher_education/Higher Education" id="higherEducation">Higher Education</a></li>
+                        <li><a href="/partners/Partners" id="partners">Partners</a></li>
+                        <li><a href="/developers/Developers" id="developers">Developers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="top-inner-title">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-10 col-sm-offset-1 wow fadeInDown">
+                    	<h3>A Title Here</h3>
+                        <p>With the most advanced features in data integration, our adaptable, cloud-based interoperability platform
+gives you complete control of your information infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="inner-solution">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h4>A Comprehensive Solution</h4>
+                    </div>
+                </div>
+                <div class="row">
+                @if(solutionList==null){
+                	<div class="col-sm-4">
+                    	<div class="solution-detail wow fadeInLeft">
+                            <span>Complex Integration Made Simple</span>
+                            <img src="images/solution-icon.png" alt="" title="" >
+                            <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="solution-detail wow fadeInDown">
+                            <span>Cloud-Based Integration as a Service</span>
+                            <img src="images/solution-icon-2.png" alt="" title="" >
+                            <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="solution-detail wow fadeInRight">
+                            <span>Continuous Real-Time Integration</span>
+                            <img src="images/solution-icon-3.png" alt="" title="" >
+                            <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt aliqua.</p>
+                        </div>
+                    </div>
+                    }else{
+                    @for(solution <- solutionList){
+                    		 <div class="col-sm-4">
+                    		 @if(solutionIndex==0){
+	                    	<div class="solution-detail wow fadeInLeft">
+	                    	}@if(solutionIndex==1){
+	                    	<div class="solution-detail wow fadeInDown">
+	                    	}@if(solutionIndex==2){
+	                    	<div class="solution-detail wow fadeInRight">
+	                    	}
+	                            <span>@solution.getTitle()</span>
+	                            <img src=@solution.getImgUrl() alt="" title="" > 
+	                            <p>@solution.getContent()</p>
+	                            <p>@solution.getAuthor()</p>
+	                            <p>@solution.getLink()</p>
+	                        </div>
+	                    </div>
+	                    @(solutionIndex = solutionIndex +1)
+		                  @if(solutionIndex == 3){
+		                  	@(solutionIndex=0)
+		                  }
+                    	}
+                    }
+                </div>
+            </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="announcements-detail">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h3>Announcements</h3>
+                    </div>
+                </div>
+                @if(announcementList==null){
+                <div class="row wow fadeInLeft">
+                	<div class="col-sm-2 col-sm-offset-1">
+                    	<div class="announcements-thumbnail">
+                        	<img src="images/announcment-thumb.png" alt="" title="" >
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                    	<div class="announcements-inner">
+                        	<h4>This Announcement Goes Here</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat </p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row wow fadeInRight">
+                	<div class="col-sm-2 col-sm-offset-1">
+                    	<div class="announcements-thumbnail">
+                        	<img src="images/announcment-thumb.png" alt="" title="" >
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                    	<div class="announcements-inner">
+                        	<h4>This Announcement Goes Here</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat </p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row wow fadeInLeft">
+                	<div class="col-sm-2 col-sm-offset-1">
+                    	<div class="announcements-thumbnail">
+                        	<img src="images/announcment-thumb.png" alt="" title="" >
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                    	<div class="announcements-inner">
+                        	<h4>This Announcement Goes Here</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat </p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row wow fadeInRight">
+                	<div class="col-sm-2 col-sm-offset-1">
+                    	<div class="announcements-thumbnail">
+                        	<img src="images/announcment-thumb.png" alt="" title="" >
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                    	<div class="announcements-inner">
+                        	<h4>This Announcement Goes Here</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat </p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                }else{
+                	 @for(announcement <- announcementList){
+        		 			@if(index==0){
+        		 			
+        		 			<div class="row wow fadeInLeft">
+	                	<div class="col-sm-2 col-sm-offset-1">
+	                    	<div class="announcements-thumbnail">
+	                        	<img src=@announcement.getImgUrl() alt="" title="" >
+	                        </div>
+	                    </div>
+	                    <div class="col-sm-8">
+	                    	<div class="announcements-inner">
+	                        	 <h4>@announcement.getTitle() </h4>
+								                                <p>@announcement.getContent()</p>
+								                                <p>@announcement.getAuthor() </p>
+								                                <a href=@announcement.getLink()>Read More</a>
+	                        </div>
+	                    </div>
+	                </div>
+	              }else{
+	              
+	              <div class="row wow fadeInRight">
+	                	<div class="col-sm-2 col-sm-offset-1">
+	                    	<div class="announcements-thumbnail">
+	                        	<img src=@announcement.getImgUrl() alt="" title="" >
+	                        </div>
+	                    </div>
+	                    <div class="col-sm-8">
+	                    	<div class="announcements-inner">
+	                        	 <h4>@announcement.getTitle() </h4>
+								                                <p>@announcement.getContent()</p>
+								                                <p>@announcement.getAuthor() </p>
+								                                <a href=@announcement.getLink()>Read More</a>
+	                        </div>
+	                    </div>
+	                </div>  
+	                }
+		        		 	@(index=index+1)
+		        		 	@if(index==2){
+		        		 		@(index=0)
+		        		 	}
+		        		 }
+                }
+            </div>
+        </div>
+        <div class="demo-section">	
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h3>Demo</h3>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-6 wow fadeInLeft">
+                    	 <a href="#"><img src="@routes.Assets.at("images/video-thumbnail.png")" alt="" title="" ></a>
+                    </div>
+                    <div class="col-sm-6 fadeInRight wow">
+                    	 <h4>This Header Goes Here</h4>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. 
+                        laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        Nemo enim ipsam voluptatem quia voluptas sit 
+                        </p>                    
+                        
+					</div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-12">
+                    	<a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-sec">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-sm-12">
+                    	<h3>Testimonals</h3>
+                    </div>
+                </div>
+                <div class="row">
+                @if(testimonals==null){
+                	<div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInLeft">
+                        	<img src="images/testimonial-thumbnail.png" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInDown">
+                        	<img src="images/testimonial-thumbnail.png" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                    	<div class="testimonial-detail wow fadeInRight">
+                        	<img src="images/testimonial-thumbnail.png" alt="" title="" >
+                            <h4>Sarah Jones</h4>
+                            <h5>Designer Studio98</h5>
+                            <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit lorem</p>
+                        </div>
+                    </div>
+                    
+                    }else{
+                    	@for(testimonal <- testimonals){
+            				 <div class="col-sm-4">
+            				 @if(testimonialIndex==0){
+                    	<div class="testimonial-detail wow fadeInLeft">
+                    	}
+                    	@if(testimonialIndex==1){
+                    	<div class="testimonial-detail wow fadeInDown">
+                    	}
+                    	@if(testimonialIndex==2){
+                    	<div class="testimonial-detail wow fadeInRight">
+                    	}
+                    		@if(testimonal.getImageUrl() == null){
+                        		<img src="@routes.Assets.at("images/testimonial-thumbnail.png")" alt="" title="" >
+                        	}else{
+                        		<img style="width: 27%;" src=@testimonal.getImageUrl() >
+                        	}
+                        	@if(testimonal.getTitle()!=null){
+                            <h4>@testimonal.getTitle()</h4>
+                            }
+                            @if(testimonal.getCompany()!=null){
+                            <h5>@testimonal.getCompany()</h5>
+                            }
+                            @if(testimonal.getContent()!=null){
+                            <p>@testimonal.getContent()</p>
+                            }
+                        </div>
+                    </div>
+                    @(testimonialIndex = testimonialIndex +1)
+		                  @if(testimonialIndex == 3){
+		                  	@(testimonialIndex=0)
+		                  }
+            			}
+                    }
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+        <div class="schedule-demo wow fadeInDown">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-md-6 col-md-offset-3 col-sm-12">
+                    	<h3>Schedule a Demo</h3>
+                        <form>
+                        	<input type="text" value="" placeholder="First Name" class="half-width" >
+                            <input type="text" value="" placeholder="Last Name" class="half-width">
+                            <input type="email" value="" placeholder="Email" >
+                            <input type="text" value="" placeholder="Organization" >
+                            <button>Schedule My Demo</button>
+                           <p> <a href="#">Or Watch One Now!</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer  -->
+    <footer class="wow fadeInDown">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-4 col-lg-3 col-sm-5">
+                	<h5 class="mobilenavsheading">Navigation</h5>
+                    <ul class="navigation">
+                    	<li><a href="/">Home</a></li>
+                        <li><a href="/solutions">Solutions</a></li>
+                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="#">Watch Demo</a></li>
+                        <li><a href="https://www.kimonocloud.com/login" target="_blank">Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-lg-2 col-lg-offset-2 col-sm-3 mobilenavs">
+                	<h5>Support</h5>
+                    <ul>
+                    	<li><a href="http://support.kimonocloud.com" target="_blank">Support Center</a></li>
+                        <li><a href="#">Platform Status </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-2 col-sm-4 mobilenavs">
+                	<h5>Contact Us</h5>
+                    <div class="contact-us">
+                    <p>35 West Broadway, Suite 103 Salt Lake City, UT 84101</p>
+                    <a href="#">1-877-262-9143</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="footer-bottom">
+        	<div class="container navsfooter">
+            	<p>&copy;2017 Kimono LLC. All Rights Reserved.   |  Kimono &reg; is a registered trademark of Kimono LLC.</p>
+            </div>
+        </div>
+    </footer>
+   
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+	<script src="@routes.Assets.at("js/wow.min.js")"></script>
+    <script src="@routes.Assets.at("js/custom.js")"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$(function() {
+  		  $('.navigation a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('activee');
+  		});
+    	var subtitle='@subTitle';
+    	//console.log("subTitle:"+subtitle);
+    	if(subtitle == "K-12"){
+    		 $('#k-12').addClass('active');
+    	}
+    	if(subtitle == "Higher Education"){
+   		 $('#higherEducation').addClass('active');
+   	    }
+    	if(subtitle == "Partners"){
+   		 $('#partners').addClass('active');
+   	    }
+    	if(subtitle == "Developers"){
+      		 $('#developers').addClass('active');
+      	 }
+    });
+    
+    </script>
+  </body>
+</html>
